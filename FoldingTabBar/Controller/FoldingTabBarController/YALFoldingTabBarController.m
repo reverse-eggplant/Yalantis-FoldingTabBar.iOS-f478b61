@@ -52,61 +52,80 @@
 
 #pragma mark - View & LifeCycle
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     [self.tabBar setBackgroundImage:[[UIImage alloc] init]];
+    
     [self.tabBar setShadowImage:[[UIImage alloc] init]];
     
     self.tabBar.hidden = YES;
 }
 
-- (void)viewWillLayoutSubviews {
+- (void)viewWillLayoutSubviews
+{
     [super viewWillLayoutSubviews];
     
     CGRect tabFrame = self.tabBar.frame;
+    
     tabFrame.size.height = self.tabBarViewHeight;
+    
     tabFrame.origin.y = self.view.frame.size.height - self.tabBarViewHeight;
+    
     self.tabBar.frame = tabFrame;
 }
 
-- (void)viewDidLayoutSubviews {
+- (void)viewDidLayoutSubviews
+{
     [super viewDidLayoutSubviews];
     
     [self updateTabBarViewFrame];
 }
 
-- (void)setSelectedIndex:(NSUInteger)selectedIndex {
+- (void)setSelectedIndex:(NSUInteger)selectedIndex
+{
     [super setSelectedIndex:selectedIndex];
 
     self.tabBarView.selectedTabBarItemIndex = selectedIndex;
+    
     [self.tabBarView setNeedsLayout];
 }
 
 #pragma mark - Private
 
-- (void)updateTabBarViewFrame {
+- (void)updateTabBarViewFrame
+{
     CGFloat tabBarViewOriginX = self.tabBar.frame.origin.x;
+    
     CGFloat tabBarViewOriginY = self.tabBar.frame.origin.y;
+    
     CGFloat tabBarViewSizeWidth = CGRectGetWidth(self.tabBar.frame);
     
     self.tabBarView.frame = CGRectMake(tabBarViewOriginX, tabBarViewOriginY, tabBarViewSizeWidth, self.tabBarViewHeight);
+    
     [self.tabBarView setNeedsLayout];
 }
 
-- (void)setupTabBarView {
+- (void)setupTabBarView
+{
     self.tabBarView = [[YALFoldingTabBar alloc] initWithFrame:CGRectZero state:self.state];
-        
+    
     self.tabBarView.dataSource = self;
+    
     self.tabBarView.delegate = self;
     
     [self.view addSubview:self.tabBarView];
 }
 
-- (id<YALTabBarInteracting>)currentInteractingViewController {
-    if ([self.selectedViewController isKindOfClass:[UINavigationController class]]) {
+- (id<YALTabBarInteracting>)currentInteractingViewController
+{
+    if ([self.selectedViewController isKindOfClass:[UINavigationController class]])
+    {
         return (id<YALTabBarInteracting>)[(UINavigationController *)self.selectedViewController topViewController];
-    } else {
+    }
+    else
+    {
         return (id<YALTabBarInteracting>)self.selectedViewController;
     }
 }
