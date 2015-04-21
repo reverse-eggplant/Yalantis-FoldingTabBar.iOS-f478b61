@@ -50,7 +50,7 @@
     [self setupTabBarView];
 }
 
-#pragma mark - View & LifeCycle
+#pragma mark - View & LifeCycle32
 
 - (void)viewDidLoad
 {

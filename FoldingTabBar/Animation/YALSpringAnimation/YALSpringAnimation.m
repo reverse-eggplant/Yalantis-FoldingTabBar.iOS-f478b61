@@ -57,22 +57,30 @@ double yal_normalizeAnimationValue(double value, double damping, double velocity
                                              toValue:toValue.origin.x
                                          withDamping:damping
                                          andVelocity:velocity];
+    
     NSArray *widthValues = [self animationValuesFromValue:fromValue.size.width
                                                   toValue:toValue.size.width
                                               withDamping:damping
                                               andVelocity:velocity];
+    
     NSMutableArray *pathValues = [NSMutableArray new];
+    
     CGFloat cornerRadius = fromValue.size.height / 2.f;
+    
     CGRect rect = fromValue;
     
-    for (NSInteger i = 0; i < xValues.count; ++i) {
+    for (NSInteger i = 0; i < xValues.count; ++i)
+    {
         CGFloat x = [(NSNumber *)xValues[i] floatValue];
+        
         CGFloat width = [(NSNumber *)widthValues[i] floatValue];
         
         rect.origin.x = x;
+        
         rect.size.width = width;
         
         UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:cornerRadius];
+        
         [pathValues addObject:(id)path.CGPath];
     }
     

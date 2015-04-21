@@ -420,16 +420,23 @@ typedef NS_ENUM(NSUInteger, YALAnimatingState) {
 }
 
 - (void)configureExtraTabBarItemWithModel:(YALTabBarItem *)item {
-    if (item.leftImage) {
+    if (item.leftImage)
+    {
         self.extraLeftButton.hidden = NO;
         [self.extraLeftButton setImage:item.leftImage forState:UIControlStateNormal];
-    } else {
+    }
+    else
+    {
         self.extraLeftButton.hidden = YES;
     }
-    if (item.rightImage) {
+    
+    if (item.rightImage)
+    {
         self.extraRightButton.hidden = NO;
         [self.extraRightButton setImage:item.rightImage forState:UIControlStateNormal];
-    } else {
+    }
+    else
+    {
         self.extraRightButton.hidden = YES;
     }
 }
@@ -449,23 +456,34 @@ typedef NS_ENUM(NSUInteger, YALAnimatingState) {
     
     self.counter ++;
     
-    if (!self.isAnimated) {
-        if (self.state == YALStateCollapsed) {
+    if (!self.isAnimated)
+    {
+        if (self.state == YALStateCollapsed)
+        {
             [self expand];
-        } else {
+        }
+        else
+        {
             [self collapse];
         }
-    } else {
-        if (self.animatingState == YALAnimatingStateCollapsing) {
+    }
+    else
+    {
+        if (self.animatingState == YALAnimatingStateCollapsing)
+        {
             [self expand];
-        } else  if (self.animatingState == YALAnimatingStateExpanding) {
+        }
+        else  if (self.animatingState == YALAnimatingStateExpanding)
+        {
             [self collapse];
         }
     }
 }
 
-- (IBAction)barItemDidTapped:(id)sender {
-    if (self.isAnimated) {
+- (IBAction)barItemDidTapped:(id)sender
+{
+    if (self.isAnimated)
+    {
         return;
     }
     
@@ -580,9 +598,12 @@ typedef NS_ENUM(NSUInteger, YALAnimatingState) {
 
 #pragma mark - Animations
 
-- (void)animateAdditionalButtons {
-    for (UIView *button in self.allAdditionalButtons) {
-        if (button.hidden) {
+- (void)animateAdditionalButtons
+{
+    for (UIView *button in self.allAdditionalButtons)
+    {
+        if (button.hidden)
+        {
             [button.layer addAnimation:[CAAnimation animationForAdditionalButton] forKey:nil];
         }
         
